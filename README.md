@@ -25,7 +25,7 @@ Your-Project-Root/
     │   ├── system_instructions.md       # Optimization rules and timezone settings
     │   ├── codebase_map.md              # [Memory] Tracks your app's workflow and code paths
     │   ├── error_memory.md              # [Memory] Tracks active and fixed error logs
-    │   └── project_memory.md            # [Memory] Tracks active milestones and project overview
+    │   └── project_memory.md            # [Memory] Tracks active context and project overview
     │
     ├── rules-ask/
     │   └── ask.md                       # Persona for reading code and explaining concepts
@@ -34,38 +34,55 @@ Your-Project-Root/
     ├── rules-debug/
     │   └── debugger.md                  # Persona for deep root-cause error analysis
     ├── rules-orchestrator/
-    │   └── orchestrator.md              # Persona for managing massive, multi-step tasks
+    │   └── orchestrator.md              # Persona for managing massive, multi-step task, and acting all personas at once
     └── rules-plan/
         └── planner.md                   # Persona for creating technical roadmaps first
 ```
 
 # Quick File Breakdown:
 
-rules/.clinerules & rules/system_instructions.md: These files act as the AI's permanent "brain constraints." They define safety zones, timezone standards, and force the AI to respect your local project boundaries.
+- rules/.clinerules & rules/system_instructions.md: These files act as the AI's permanent "brain constraints." They define safety zones, timezone standards, and force the AI to respect your local project boundaries.
 
-The Dynamic Memory Files (project_memory.md, error_memory.md, codebase_map.md): These are the only tracking files the AI is allowed to write into. They act as short cheat sheets so the AI always knows what it did in your last chat session.
+- The Dynamic Memory Files (project_memory.md, error_memory.md, codebase_map.md): These are the only tracking files the AI is allowed to write into. They act as short cheat sheets so the AI always knows what it did in your last chat session.
 
-The Sub-folders (rules-ask/, rules-code/, etc.): Whenever you choose a different mode in your extension, the AI automatically reads the matching .md file inside these folders to change its mindset instantly.
+- The Sub-folders (rules-ask/, rules-code/, etc.): Whenever you choose a different mode in your extension, the AI automatically reads the matching .md file inside these folders to change its mindset instantly.
 
-# ⚡ Prompt Flags (Commands)
+# ⚡ Prompt Triggers (Manual Commands)
 
 Type these prompts depending on these situations!
+
+<br>[Newly Added: Manual Triggers on Persona's]
+
+-o, -p, -c, -d, -a (Orchestrator, Planner, Coder, Debug, Ask)
+
+<b>What it does:</b> Type -p in your prompt so the ai acts as planner that plans your expected ideas.
+<br>Example to prompt: "-p I want to build a comprehensive fitness and nutrition app that seamlessly integrates calorie tracking with gym progress logging".
+
+---
 
 -setup
 
 <b>What it does:</b> Dynamically inspects your whole workspace and updates all three memory layers at once. Use this on your very first prompt or whenever you start a brand new chat session!
 
+---
+
 -context
 
 <b>What it does:</b> Scans your current project structure and updates project_memory.md to record your active project workflow.
+
+---
 
 -error
 
 <b>What it does:</b> Analyzes active debugging traces and updates error_memory.md with current bugs, logs, and resolution steps. It also records history fixed errors to prevent hallucinating and bringing up old fixed bugs. Every debugging session include -error on your prompt
 
+---
+
 -codebase
 
 <b>What it does:</b> Looks over your code layout and updates codebase_map.md with simple descriptions of your active application workflow. This is useful if you're vibe learning xd, It records your app's techstack and even explain to you the purpose of every file so you can keep track of ai changes and your current app state. Best practices to use this prompt is when you're about to deploy or finished building your project.
+<br>
+<br>
 
 # Why Manual Triggers Instead of Auto-Updates?
 
@@ -99,8 +116,8 @@ git clone https://github.com/worriee/clinerulestemplate.git
 
 Copy the .roo folder (or .clinerules folder depending on your extension you're working with) from the cloned template directory and paste it directly at the root of your current project workspace.
 
-Start your very first prompt in the extension chat with -setup and start cooking 🔥.
+Start your very first prompt in ai agent using -setup and start cooking 🔥.
 
 ---
 
-Feedback is a must, tbh the .clinerules template of mine isn't working properly in cline extension. It often overlaps to the context window and forgets frequently. Maybe because I'm using free api ai model from openrouter lol. But this maybe works for you :> so don't hesitate.
+Feedback is a must, tbh the .clinerules template of mine isn't working properly in cline extension. It often overlaps to the context window and forgets frequently. Maybe because I'm using free api ai model from openrouter lol. But this maybe works for you, so give it a try :>.

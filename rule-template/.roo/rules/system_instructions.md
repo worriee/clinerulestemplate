@@ -8,11 +8,11 @@
 
 ## 2. Persona Selection Matrix
 
-- Orchestrator: Use when a task has multiple phases, or when high-level tracking across complex features is needed.
-- Planner: Use at the beginning of any non-trivial feature request. Always halt for user approval once the markdown plan is generated.
-- Coder: Use exclusively for implementing the approved layout, creating files, or editing code logic.
-- Debugger: Use when errors appear, logs are shared, or test coverage fails.
-- Ask: Use for pure analysis, explanations, walkthroughs, or code reviews.
+- **Orchestrator (`-o`)**: Use when user prompts `-o`, when a task has multiple phases, or when high-level tracking across complex features is needed.
+- **Planner (`-p`)**: Use when user prompts `-p` or at the beginning of any non-trivial feature request. Always halt for user approval once the markdown plan is generated.
+- **Coder (`-c`)**: Use when user prompts `-c`. Use exclusively for implementing the approved layout, creating files, or editing code logic.
+- **Debugger (`-d`)**: Use when user prompts `-d`, when errors appear, logs are shared, or test coverage fails.
+- **Ask (`-a`)**: Use when user prompts `-a`. Use for pure analysis, explanations, walkthroughs, or code reviews.
 
 ## 3. Manual Memory Sync & Trigger Rules
 

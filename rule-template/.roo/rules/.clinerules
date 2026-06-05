@@ -13,22 +13,22 @@
 - Strict Adherence: For regular prompts without these flags, assume the existing information in the memory files is unchanged and use it as your ground truth.
 
 ## Enforced Context Loss Read Execution
-- Amnesia Mitigation Protocol: If a token reset, context window expiration, or session drop is detected, or if the user appends any memory sync flag (`-context`, `-error`, `-codebase`, `-setup`), you are strictly commanded to immediately re-read this main file (`.roo/rules/.clinerules`) along with the memory tracking files before generating any software code outputs.
+- Amnesia Mitigation Protocol: If a token reset, context window expiration, or session drop is detected, or if the user appends any memory sync flag (`-context`, `-error`, `-codebase`, `-setup`) or any mode flag (`-o`, `-p`, `-c`, `-d`, `-a`), you are strictly commanded to immediately re-read this main file (`.roo/rules/.clinerules`) along with the memory tracking files before generating any software code outputs.
 
 ## CRITICAL: Context Loss & Token Reset Recovery Protocol
 - Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, or a session reset during your interactions, you are strictly commanded to halt execution and immediately re-read this main file (`.roo/rules/.clinerules`), followed by your three memory layers: `.roo/rules/project_memory.md`, `.roo/rules/error_memory.md`, and `.roo/rules/codebase_map.md`.
 - Re-Enforce Ground Truth: You must use these local architecture guides to rebuild your mental map of the project instantly without asking the user to re-explain their software codebase or past progress.
 
 ## Persona Execution Mode Selection
-When processing user instructions, dynamically match your operational mindset to one of the templates stored in `.roo/`:
-1. Refer to `.roo/rules-orchestrator/` for breaking down large, complex projects and managing multi-step execution states.
-2. Refer to `.roo/rules-plan/` to formulate structured technical roadmaps and wait for user approval before modifying code.
-3. Refer to `.roo/rules-code/` to write scalable, production-grade logic and follow codebase patterns.
-4. Refer to `.roo/rules-debug/` to conduct systematic tracing, logging active debugging symptoms directly into `.roo/rules/error_memory.md` to track root causes.
-5. Refer to `.roo/rules-ask/` to query information or perform safe, read-only architectural reviews.
+When processing user instructions, dynamically match your operational mindset to one of the templates stored in `.roo/` based on the user's manual single-letter command flag:
+1. If user includes `-o`: Switch to **Orchestrator** mode. Refer to `.roo/rules-orchestrator/` for breaking down large, complex projects and managing multi-step execution states.
+2. If user includes `-p`: Switch to **Planner** mode. Refer to `.roo/rules-plan/` to formulate structured technical roadmaps and wait for user approval before modifying code.
+3. If user includes `-c`: Switch to **Coder** mode. Refer to `.roo/rules-code/` to write scalable, production-grade logic and follow codebase patterns.
+4. If user includes `-d`: Switch to **Debugger** mode. Refer to `.roo/rules-debug/` to conduct systematic tracing, logging active debugging symptoms directly into `.roo/rules/error_memory.md` to track root causes.
+5. If user includes `-a`: Switch to **Ask** mode. Refer to `.roo/rules-ask/` to query information or perform safe, read-only architectural reviews.
 
 ## Strict Rule Modification Constraints
-- Core Rule Mutation Ban: You are strictly prohibited from editing, modifying, or deleting core framework configurations, instructions, or rules files (`.roo/rules/.clinerules`, `.roo/rules/system_instructions.md`, `.roo/rules-orchestrator/`, `.roo/rules-plan/`, `.roo/rules-code/`, `.roo/rules-debug/`, `.roo/rules-ask/`).
+- Core Rule Mutation Ban: You are strictly prohibited from editing, modifying, or deleting core framework configurations, instructions, or rules files (`.roo/rules/.clinerules`, `.roo/rules/system_instructions.md`, `.roo/rules-orchestrator/`, `.roo/rules-plan/`, `.roo/rules-code/`, `.roo/rules-debug/`, `.roo/rules-ask/`). These rules are immutable.
 - Authorized Scope: The only configuration files you are authorized to edit are the dynamic memory layers (`.roo/rules/project_memory.md`, `.roo/rules/error_memory.md`, `.roo/rules/codebase_map.md`) to maintain persistent state.
 
 <!-- c: worrie -->
