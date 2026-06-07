@@ -1,6 +1,15 @@
-# Zoo Code (former roo) & Cline Rules Template
+# Workspace Rules Template
 
-Make your VS Code AI agent smarter, faster, and highly token-efficient! This template works perfectly for **Roo Code**, **Zoo Code**, and **Cline** extensions. It stops the AI from guessing your code structure or forgetting past progress.
+Make your VS Code AI agent smarter, faster, and highly token-efficient! It stops the AI from guessing your code structure or forgetting past progress. Saves time when moving to other ai agents without re-explaining everything so that it understands current context.
+
+---
+
+## You can use this template if you use these vscode extensions:
+
+- Cline [cline.bot]
+- Roo Code [roocode.com]
+- Zoo Code [Zoo Code Organization] (community forked roo after its shutdown in vscode extension migrating to Roomote)
+- Kilo Code [kilocode.ai] (do check the exclusive guide for this in installation guide below)
 
 ---
 
@@ -9,6 +18,8 @@ Make your VS Code AI agent smarter, faster, and highly token-efficient! This tem
 By default, AI coding assistants can quickly fill up your context window by reading too many files or repeating large blocks of code. They can also forget what they did in a previous chat session.
 
 This template builds an **AI Memory Layer** inside your local project. It forces the AI to follow strict project rules, adopt specialized roles (like Coder or Debugger), and track its own progress in small, lightweight markdown files.
+
+<b>Why Workspace instead of Global Rules?:</b> Global rules enforce a single memory layout across all projects. This causes critical context contamination, as memory files from prior projects leak into new ones upon initialization. Workspace rules isolate project documentation strictly within the local directory, ensuring that the AI’s contextual understanding remains perfectly aligned with the current workspace.
 
 ---
 
@@ -90,7 +101,9 @@ This template explicitly bans the AI from modifying its memory files in the back
 
 # Key Benefits of Manual Triggering:
 
-Massive Token & Money Savings: Automatic background updates force the AI to analyze, rewrite, and reread your entire repository structure on every single prompt. Manual syncing cuts out this massive token usage entirely.
+<b>Massive Token & Money Savings:</b> Automatic background updates force the AI to analyze, rewrite, and reread your entire repository structure on every single prompt. Manual syncing cuts out this massive token usage entirely since you will manage when to update the memory files.
+
+<b>Full Control of Personas:</b> You manually trigger personas on how you want the ai to act based on your prompt.
 
 # Prevents AI Hallucination:
 
@@ -118,6 +131,24 @@ Copy the .roo folder (or .clinerules folder depending on your extension you're w
 
 Start your very first prompt in ai agent using -setup and start cooking 🔥.
 
+## Kilo Code Guide (you can use neither of .roo and .clinerules together with their existing memory logs.)
+
+**First Chat Session**
+<br><br>You: "Read the rules and active parameters stored within the [template folder u want to retain] directory layout. Apply the system constraints instantly."
+<br><br>AI: I have read your...
+<br><br>You: "-setup" OR "read existing memory files so you'll have the current context of the project"
+
 ---
 
 Feedback is a must, tbh the .clinerules template of mine isn't working properly in cline extension. It often overlaps to the context window and forgets frequently. Maybe because I'm using free api ai model from openrouter lol. But this maybe works for you, so give it a try :>.
+
+---
+<br>
+
+# Own Usages
+
+<img src="assets/usage1.png" width="200"/>
+<img src="assets/usage2.png" width="200" height="130"/>
+<img src="assets/usage3.png" width="200" height="130"/>
+<img src="assets/usage4.png" width="200" height="130"/>
+<img src="assets/usage5.png" width="200" height="130"/>
