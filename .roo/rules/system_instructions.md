@@ -21,7 +21,7 @@
 - **Command Flag Processing Execution**:
   - If `-context` is prompted: Run structural inspection and update `.roo/rules/project_memory.md` together with its timestamp.
   - If `-error` is prompted: Analyze debugging traces and update `.roo/rules/error_memory.md` together with its timestamp.
-  - If `-codebase` is prompted: Log directory maps and file utilities inside `.roo/rules/codebase_map.md`.
+  - If `-codebase` is prompted: Log directory maps and file utilities inside `.roo/rules/codebase_map.md` together with its timestamp. **Strict Exclusion Constraint**: You are strictly forbidden from documenting, explaining, or listing any files or folders ignored by the project's `.gitignore` file within the codebase map tracker.
   - If `-setup` is prompted: Synchronize all state documentation tools instantly.
 - **Directory Indexing & Failover Protocol**: When executing filesystem exploration commands (especially during `-setup`), you must strictly adhere to the following environment-specific shell rules:
   - If executing in **PowerShell**, utilize: `Get-ChildItem -Recurse -Name`
