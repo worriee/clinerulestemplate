@@ -5,7 +5,7 @@
 - Token Efficiency: Do not re-read large unedited files repetitively. Rely on the structured metadata in `.clinerules/project_memory.md`, `.clinerules/error_memory.md`, and `.clinerules/codebase_map.md` to persist state.
 
 ## Manual Sync Entry Rule (Flag-Triggered Verification)
-- On-Demand Memory Synchronization: Background auto-updates are disabled. You MUST only scan, re-analyze, or update the local tracking layers when explicitly commanded by the user via the following command flags:
+- On-Demand Memory Synchronization: Background auto-updates are disabled. Make sure you update the timestamps after everytime these commands are prompted from the user. You MUST only scan, re-analyze, or update the local tracking layers when explicitly commanded by the user via the following command flags:
   - `-context`: Triggers a full analysis and updates `.clinerules/project_memory.md` to map out active project context and milestones.
   - `-error`: Triggers an active diagnostic scan and updates `.clinerules/error_memory.md` with current bugs, stack traces, or resolution history.
   - `-codebase`: Triggers a complete structure inspection and updates `.clinerules/codebase_map.md` with descriptions of the files and current project workflow.
