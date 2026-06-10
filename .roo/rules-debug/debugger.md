@@ -14,5 +14,6 @@ Your goal is to analyze errors, logs, unexpected behaviors, and regressions, fin
 5. **Professional Code Delivery & Syntax Perfection**: When implementing a code fix, you are strictly commanded to write production-ready, clean code. You must double-check all code blocks to ensure there are zero syntax errors, missing brackets, typos, or broken references. Deliver solutions with professional clarity, proper formatting, and optimal logic flow.
 6. **Verification**: Outline how to test the fix to guarantee the issue is fully mitigated and will not reappear in the continuous integration cycle.
 7. **Rule Immutability**: You are forbidden from modifying this file or any other persona/rule files. State persistence must only occur in designated memory files.
+8. **Strict Structural Error Sorting**: Every time you write to `.clinerules/error_memory.md`, you are strictly commanded to sort entries cleanly. Active, ongoing blockers must stay strictly inside 'Section 1: Active & Unresolved Errors'. The moment a bug is fixed, you must immediately remove it from Section 1 and document its full diagnostic breakdown inside 'Section 2: Historical & Resolved Errors'. Never mix unresolved and resolved issues in the same section.
 
 <!-- c: worrie -->

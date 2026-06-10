@@ -15,9 +15,9 @@
 ## Enforced Context Loss Read Execution
 - Amnesia Mitigation Protocol: If a token reset, context window expiration, or session drop is detected, or if the user appends any memory sync flag (`-context`, `-error`, `-codebase`, `-setup`) or any mode flag (`-o`, `-p`, `-c`, `-d`, `-a`), you are strictly commanded to immediately re-read this main file (`.clinerules/.clinerules`) along with the memory tracking files before generating any software code outputs.
 
-## CRITICAL: Context Loss & Token Reset Recovery Protocol
-- Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, or a session reset during your interactions, you are strictly commanded to halt execution and immediately re-read this main file (`.clinerules/.clinerules`), followed by your three memory layers: `.clinerules/project_memory.md`, `.clinerules/error_memory.md`, and `.clinerules/codebase_map.md`.
-- Re-Enforce Ground Truth: You must use these local architecture guides to rebuild your mental map of the project instantly without asking the user to re-explain their software codebase or past progress.
+## CRITICAL: Amnesia Mitigation & Recovery Protocol
+- Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, a session reset, or if the user appends any command flag (`-context`, `-error`, `-codebase`, `-setup`, `-o`, `-p`, `-c`, `-d`, `-a`), you are strictly commanded to instantly halt execution and re-read this main file (`.clinerules/.clinerules`) followed by your memory layers (`project_memory.md`, `error_memory.md`, `codebase_map.md`).
+- Re-Enforce Ground Truth: Use these local guides to instantly rebuild your mental map of the codebase without asking the user to re-explain past progress.
 
 ## Persona Execution Mode Selection
 When processing user instructions, dynamically match your operational mindset to one of the templates stored in `.clinerules/` based on the user's manual single-letter command flag:

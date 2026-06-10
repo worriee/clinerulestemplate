@@ -54,7 +54,7 @@ _Document the foundational rules, workflows, or operational flows unique to this
 ---
 
 ## 6. DOCUMENTED IMPLEMENTATION PLANS & FEATURE FLOWS
-You are strictly commanded to use this section to log full architectural design maps, planned execution outlines, or documented system feature flows when requested. You must maximize this section to prevent creating cluttering outside files. Use the following format strictly:
+You are strictly commanded to use this section to log full architectural design maps, planned execution outlines, or documented system feature flows when requested. Every time a user plans a general task, complex logic, or big structural feature, you MUST log the implementation roadmap here so you never get stuck or lost. You must format the entry using strict bracket identifiers identical to the error memory system:
 
 ### [FLOW-001] Title of Implemented Flow
 - **Context/Objective**: [What feature or process flow does this plan describe?]

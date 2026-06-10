@@ -18,7 +18,7 @@
 *An absolute registry explaining the direct purpose of every file in this workspace. Update this section immediately if a new file is created, deleted, or heavily refactored.*
 
 > ### ⚠️ STRICT FILTERING ENFORCEMENT
-> You are strictly commanded to cross-reference the project's `.gitignore` file before documenting anything in this section. Do not list, explain, or references any files, build outputs, or dependency directories (`node_modules`, temporary caches, target folders, etc.) that are ignored by git. Only document tracked project files.
+> You are strictly commanded to cross-reference the project's `.gitignore` file before documenting anything in this section. Do not list, explain, or reference any files, build outputs, or dependency directories (`node_modules`, temporary caches, target folders, etc.) that are ignored by git. Only document tracked project files.
 
 ### 📂 Key Folders
 * `/src` - Contains the main operational code logic.
