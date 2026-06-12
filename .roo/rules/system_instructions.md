@@ -22,7 +22,10 @@
   - If `-context` is prompted: Run structural inspection and update `.roo/rules/project_memory.md` together with its timestamp.
   - If `-error` is prompted: Analyze debugging traces and update `.roo/rules/error_memory.md` together with its timestamp.
   - If `-codebase` is prompted: Log directory maps and file utilities inside `.roo/rules/codebase_map.md` together with its timestamp. **Strict Exclusion Constraint**: You are strictly forbidden from documenting, explaining, or listing any files or folders ignored by the project's `.gitignore` file within the codebase map tracker.
-  - If `-setup` is prompted: Synchronize all state documentation tools instantly together with its timestamps.
+  - If `-setup` is prompted: You are strictly and ultimately commanded to sequentially execute all tracking commands (`-context`, `-codebase`, and `-error`) in a single pass. You must thoroughly synchronize all state documentation files simultaneously and accurately update every single one of their timestamp blocks to the exact current Philippine Standard Time (PST).
+- **Ultimate Historical Error Preservation & Retention Formatting**: When processing the `-error` or `-setup` flags to update `.roo/rules/error_memory.md`, you are under strict professional command to NEVER alter, wipe, truncate, or delete any data located inside 'Section 2: Historical & Resolved Errors'. Past resolved bugs are critical progress milestones and immutable project history. You must only append new resolutions to that section.
+  - **Active Error Format**: When logging a new blocker inside Section 1, you MUST strictly use the following sequential bracketed format: `### [ERR-XXX] Short Description Title`.
+  - **Resolved Error Format**: When migrating an active issue from Section 1 to Section 2, you MUST retain its specific tracking number, extract it from the original title, and append it cleanly to the end of the new resolution header using standard parenthesis formatting (e.g., `### [RESOLVED] Short Error Description (ERR-XXX)`).
 - **Directory Indexing & Failover Protocol**: When executing filesystem exploration commands (especially during `-setup`), you must strictly adhere to the following environment-specific shell rules:
   - If executing in **PowerShell**, utilize: `Get-ChildItem -Recurse -Name`
   - If executing in **Command Prompt (cmd)**, utilize: `dir /s /b`
