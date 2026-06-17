@@ -44,8 +44,16 @@ _Document the foundational rules, workflows, or operational flows unique to this
 ## 4. Current State & Active Focus
 
 - **Active Task**:
+
+---
+
 - **Completed Milestones**:
+
+---
+
 - **Pending Tasks**:
+
+---
 
 ## 5. Architectural Decisions & Constraints
 

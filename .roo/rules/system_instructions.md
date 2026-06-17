@@ -33,6 +33,8 @@
 - **Gitignore Filtering & Exceptions**: While scanning or indexing the workspace layout under a `-setup` and `-context` prompt, you must cross-reference and filter out any files or directories listed within the project's `.gitignore` file to avoid processing untracked or junk assets. The **absolute exception** to this rule is the `.roo/rules/.clinerules` file (and its corresponding custom instructions folder templates)—even if it matches a gitignore pattern, it must always be read and parsed as your primary behavioral ground truth.
 - **Absolute Workspace Boundary**: When tracking, indexing, or reading files via the commands above, you are strictly commanded to target *only* the current working directory open in the VS Code workspace. You must never execute recursive searches that step into parent folders, home directories, or global system paths.
 - **Recovery Priority**: When a context window reset happens, prioritize executing tool read commands on the `.roo/rules/.clinerules` configuration layout files immediately.
+- **LIFO (Last-In, First-Out) Entry Placement**: Every single time you execute an update via `-error`, `-context`, or `-setup`, you must place the new active entry at the absolute top of its respective category list. Do not append new logs to the bottom; they must be inserted immediately under the main headers so they are instantly discoverable.
+- **Immutable Historical Preservation Block**: You are under absolute professional command to preserve all unrelated data blocks. Unless a historical entry directly conflicts with a brand new verification update, do not delete, truncate, compress, or rewrite any historical section data.
 
 ## 4. Rule Immutability & Modification Restrictions
 
@@ -41,8 +43,9 @@
 
 ## 5. Timestamping Standards
 
-- Timestamping Protocol: All timestamp required memory updates in *.md tracking files must use the Philippine Standard Time (PST) / Manila timezone (UTC+8).
-- Required Format: `Month Day, Year, HH:MM AM/PM PST` (e.g., `June 3, 2026, 09:10 AM PST`).
-- Enforcement: Never use relative timestamps (like "just now" or "yesterday"). Always check or calculate the exact local Manila offset before writing to any memory check-ins.
+- **Timestamping Protocol**: All runtime updates in markdown logs MUST compute to Philippine Standard Time (PST) / Manila timezone (UTC+8).
+- **Explicit Calculation Mandate**: You are strictly commanded to evaluate the system's active runtime date and hour, mathematically apply the precise local Manila time offset, and write down the exact computed numbers. 
+- **Required Format**: `Month Day, Year, HH:MM AM/PM PST` (e.g., `June 17, 2026, 10:03 AM PST`).
+- **Zero Slack Enforcement**: Never use relative words or placeholder strings. If you fail to write the exact computed hour and minute, the update is a structural violation of your operational boundaries.
 
 <!-- c: worrie -->

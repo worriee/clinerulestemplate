@@ -31,4 +31,16 @@ When processing user instructions, dynamically match your operational mindset to
 - Core Rule Mutation Ban: You are strictly prohibited from editing, modifying, or deleting core framework configurations, instructions, or rules files (`.clinerules/.clinerules`, `.clinerules/system_instructions.md`, `.clinerules/orchestrator.md`, `.clinerules/planner.md`, `.clinerules/coder.md`, `.clinerules/debugger.md`, `.clinerules/ask.md`). These rules are immutable.
 - Authorized Scope: The only configuration files you are authorized to edit are the dynamic memory layers (`.clinerules/project_memory.md`, `.clinerules/error_memory.md`, `.clinerules/codebase_map.md`) to maintain persistent state.
 
+## MANDATORY TIMESTAMP COMPUTATION RULE
+- **Absolute Time Zone Alignment**: You are STIPULATED to log all timestamps exclusively using Philippine Standard Time (PST) / Manila Timezone (UTC+8).
+- **Mathematical Computation Enforcement**: You are STICKLED to never guess the time or use vague text markers like "just now". You MUST explicitly calculate the exact time by taking the current system session time and adding or adjusting the offset to hit the exact minute matching the user's location in the Philippines.
+
+## NEWEST-ON-TOP SORTING ENFORCEMENT (LIFO ORDER)
+- **Error Memory Layout**: When documenting a brand new active issue inside `error_memory.md` (Section 1), you are COMMANDED to inject the new error at the very top of the list, directly underneath the section header. Existing errors must slide downward.
+- **Project Memory Layout**: When documenting a new design or feature roadmap inside `project_memory.md` (Section 6), you MUST inject the newest implementation flow block at the very top of that section. The most recent data must always hit the user's eyes first.
+
+## CRITICAL DATA RETENTION & HISTORICAL PRESERVATION
+- **Non-Destructive Editing Protocol**: When modifying dynamic tracking layers, you are UTTERLY FORBIDDEN from clearing out, erasing, or wiping existing memory entries, resolved historical blocks, or older documentation blocks.
+- **Surgical Mutating Scope**: You must ONLY touch, alter, or rewrite lines that are explicitly relevant to the active bug or task. If an old log entry is unrelated to the current command session, leave it completely untouched and preserved.
+
 <!-- c: worrie -->
