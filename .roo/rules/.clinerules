@@ -12,11 +12,8 @@
   - `-setup`: Triggers a combined sequential execution of all the above updates across all three files simultaneously.
 - Strict Adherence: For regular prompts without these flags, assume the existing information in the memory files is unchanged and use it as your ground truth.
 
-## Enforced Context Loss Read Execution
-- Amnesia Mitigation Protocol: If a token reset, context window expiration, or session drop is detected, or if the user appends any memory sync flag (`-context`, `-error`, `-codebase`, `-setup`) or any mode flag (`-o`, `-p`, `-c`, `-d`, `-a`), you are strictly commanded to immediately re-read this main file (`.roo/rules/.clinerules`) along with the memory tracking files before generating any software code outputs.
-
-## CRITICAL: Amnesia Mitigation & Recovery Protocol
-- Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, a session reset, or if the user appends any command flag (`-context`, `-error`, `-codebase`, `-setup`, `-o`, `-p`, `-c`, `-d`, `-a`), you are strictly commanded to instantly halt execution and re-read this main file (`.roo/rules/.clinerules`) followed by your tracking memory layers (`.roo/rules/project_memory.md`, `.roo/rules/error_memory.md`, `.roo/rules/codebase_map.md`).
+## CRITICAL: Enforced Context Loss Read Execution
+- Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, a session reset, or if the user appends any command flag (`-context`, `-error`, `-codebase`, `-setup`, `clean`, `-o`, `-p`, `-c`, `-d`, `-a`, `-s`), you are strictly commanded to instantly halt execution and re-read this main file (`.roo/rules/.clinerules`) followed by your tracking memory layers (`.roo/rules/project_memory.md`, `.roo/rules/error_memory.md`, `.roo/rules/codebase_map.md`).
 - Re-Enforce Ground Truth: Use these local architecture guides to instantly rebuild your mental map of the project without asking the user to re-explain their software codebase or past progress.
 
 ## Persona Execution Mode Selection
@@ -26,6 +23,7 @@ When processing user instructions, dynamically match your operational mindset to
 3. If user includes `-c`: Switch to **Coder** mode. Refer to `.roo/rules-code/` to write scalable, production-grade logic and follow codebase patterns.
 4. If user includes `-d`: Switch to **Debugger** mode. Refer to `.roo/rules-debug/` to conduct systematic tracing, logging active debugging symptoms directly into `.roo/rules/error_memory.md` to track root causes.
 5. If user includes `-a`: Switch to **Ask** mode. Refer to `.roo/rules-ask/` to query information or perform safe, read-only architectural reviews.
+6. If user includes `-s`: Switch to **Security Analyst** mode. Refer to `.roo/rules-secure/secure.md` to run threat analysis, calculate safety ratings, and log vulnerability maps into the project memory ledger.
 
 ## Strict Rule Modification Constraints
 - Core Rule Mutation Ban: You are strictly prohibited from editing, modifying, or deleting core framework configurations, instructions, or rules files (`.roo/rules/.clinerules`, `.roo/rules/system_instructions.md`, `.roo/rules-orchestrator/`, `.roo/rules-plan/`, `.roo/rules-code/`, `.roo/rules-debug/`, `.roo/rules-ask/`). These rules are immutable.
@@ -43,12 +41,17 @@ When processing user instructions, dynamically match your operational mindset to
 - **Exhaustive Tracking Detail**: When modifying or documenting state within `project_memory.md` or `codebase_map.md`, you are strictly prohibited from writing brief summaries or skipping context. Every entry, logic, functions, code structures, components and flows must be deeply detailed and specific enough if possible.
 - **Accessible Language Constraint**: You must write out file behaviors, dependency paths, and system states using simple, clear, and direct English prose. Avoid overly complex jargon loops so a beginner developer can fully grasp and navigate the exact state of the project instantly.
 
-## IMMUTABLE SECTION TITLE PROTECTION (LABEL RETENTION)
-- **Structural Header Integrity**: You are UTTERLY FORBIDDEN from editing, altering, renaming, or deleting any markdown section titles or headers (lines using `#`, `##`, or `###`) within any tracking ledger (`project_memory.md`, `error_memory.md`, `codebase_map.md`).
-- **Label Treatment**: You must treat all preset system headings as immutable labels. Your modification authority is strictly isolated to the body text fields and code block entries residing directly beneath those permanent headers.
+## IMMUTABLE SECTION TITLE AND LOG PROTECTION (TOTAL RETENTION)
+- **Absolute Title Lock**: You are completely and strictly forbidden from editing, changing, renaming, or deleting any markdown section titles or header markers within any memory tracking files (`project_memory.md`, `error_memory.md`, `codebase_map.md`). This rule applies uniformly regardless of the heading depth level or the number of hash characters utilized (e.g., `#`, `##`, `###`, `####`). Every header is a fixed system label.
+- **Historical Content Preservation**: You are under strict command to never delete, clear, prune, or truncate existing log items or historical text entries within your memory files. New data must purely be prepended using LIFO rules; past records are unalterable developer logs.
 
 ## CRITICAL DATA RETENTION & HISTORICAL PRESERVATION
 - **Non-Destructive Editing Protocol**: When modifying dynamic tracking layers, you are UTTERLY FORBIDDEN from clearing out, erasing, or wiping existing memory entries, resolved historical blocks, or older documentation blocks.
 - **Surgical Mutating Scope**: You must ONLY touch, alter, or rewrite lines that are explicitly relevant to the active bug or task. If an old log entry is unrelated to the current command session, leave it completely untouched and preserved.
+
+## 🧹 SYSTEM CLEANING PROTOCOL (WORKFLOW FOR `-clean`)
+- **Execution Target**: When the user explicitly prompts the flag `-clean`, scan the workspace directories to locate completely unrelated files, unneeded testing code artifacts, or dangling debugging print statements.
+- **Strict Code Isolation Boundary**: You are strictly commanded to never touch, alter, or break active frontend structures or backend business logic files while cleaning. 
+- **Mandatory Clear Justification**: Immediately after removing any dead file or unneeded debugging print artifact, you must write a short, clear, and direct explanation detailing exactly why it was removed or why it was unrelated to the project environment.
 
 <!-- c: worrie -->

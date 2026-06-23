@@ -14,6 +14,7 @@
 - **Coder (`-c`)**: Use when user prompts `-c`. Use exclusively for implementing the approved layout, creating files, or editing code logic.
 - **Debugger (`-d`)**: Use when user prompts `-d`, when errors appear, logs are shared, or test coverage fails.
 - **Ask (`-a`)**: Use when user prompts `-a`. Use for pure analysis, explanations, walkthroughs, or code reviews.
+- **Security Analyst (`-s`)**: Use when user prompts `-s`. Use exclusively for vulnerability scans, threat assessments, and security architecture reviews. Never apply edits to main source code components during this mode.
 
 ## 3. Manual Memory Sync & Trigger Rules
 
@@ -31,23 +32,25 @@
   - If executing in **Command Prompt (cmd)**, utilize: `dir /s /b`
   - **Failover Strategy**: If your active shell's command fails, immediately pivot and execute the alternative shell command. If both fallback options fail, independently research available terminal utilities within the environment to successfully complete the structural sync required by `-setup`.
 - **Gitignore Filtering & Exceptions**: While scanning or indexing the workspace layout under a `-setup` and `-context` prompt, you must cross-reference and filter out any files or directories listed within the project's `.gitignore` file to avoid processing untracked or junk assets. The **absolute exception** to this rule is the `.roo/rules/.clinerules` file (and its corresponding custom instructions folder templates)—even if it matches a gitignore pattern, it must always be read and parsed as your primary behavioral ground truth.
-- **Absolute Workspace Boundary**: When tracking, indexing, or reading files via the commands above, you are strictly commanded to target *only* the current working directory open in the VS Code workspace. You must never execute recursive searches that step into parent folders, home directories, or global system paths.
+- **Absolute Workspace Boundary**: When tracking, indexing, or reading files via the commands above, you are strictly commanded to target _only_ the current working directory open in the VS Code workspace. You must never execute recursive searches that step into parent folders, home directories, or global system paths.
 - **Recovery Priority**: When a context window reset happens, prioritize executing tool read commands on the `.roo/rules/.clinerules` configuration layout files immediately.
 - **LIFO (Last-In, First-Out) Entry Placement**: Every single time you execute an update via `-error`, `-context`, or `-setup`, you must place the new active entry at the absolute top of its respective category list. Do not append new logs to the bottom; they must be inserted immediately under the main headers so they are instantly discoverable.
 - **Immutable Historical Preservation Block**: You are under absolute professional command to preserve all unrelated data blocks. Unless a historical entry directly conflicts with a brand new verification update, do not delete, truncate, compress, or rewrite any historical section data.
 - **Systematic LIFO Placement**: When compiling changes via `-error`, `-context`, `-codebase`, or `-setup` flags, the fresh payload data MUST be prioritized at the absolute beginning of the section. Do not append additions to the bottom of list boundaries.
 - **High-Detail Beginner Clarity**: Every update pushed to `project_memory.md` and `codebase_map.md` must thoroughly detail the specific role of the components and etc, explaining who depends on them in a highly readable, simplified format.
 - **Header Modification Ban**: You are denied permissions to refactor, touch, or alter heading text structures. All layout section titles must remain exactly as originally defined to ensure absolute systemic indexing consistency.
+- **Vulnerability Logging Protocol**: When running under `-s`, you must safely open `.roo/rules/project_memory.md` and log attack patterns strictly within `## 7. SECURITY ANALYSIS & THREAT FLOWS` using a clear LIFO ordering format.
+- **Clean Command Constraint**: The moment `-clean` is triggered, isolate your actions to removing non-functional logic, forgotten log lines, or trace logs. Keep all real application structures untouched to ensure complete reliability.
 
 ## 4. Rule Immutability & Modification Restrictions
 
-- Zero-Tolerance Rule Tampering: You are strictly prohibited from mutating or editing any systemic instruction or persona file (`.roo/rules/system_instructions.md`, `.roo/rules/.clinerules`, `.roo/rules-orchestrator/`, `.roo/rules-plan/`, `.roo/rules-code/`, `.roo/rules-debug/`, `.roo/rules-ask/`).
+- Zero-Tolerance Rule Tampering: You are strictly prohibited from mutating or editing any systemic instruction or persona file (`.roo/rules/system_instructions.md`, `.roo/rules/.clinerules`, `.roo/rules-orchestrator/`, `.roo/rules-plan/`, `.roo/rules-code/`, `.roo/rules-debug/`, `.roo/rules-ask/`, `.roo/rules-secure/`).
 - Permitted Writes: Your modification authority is strictly limited to updating dynamic state indicators within `.roo/rules/project_memory.md`, `.roo/rules/error_memory.md`, and `.roo/rules/codebase_map.md`.
 
 ## 5. Timestamping Standards
 
 - **Timestamping Protocol**: All runtime updates in markdown logs MUST compute to Philippine Standard Time (PST) / Manila timezone (UTC+8).
-- **Explicit Calculation Mandate**: You are strictly commanded to evaluate the system's active runtime date and hour, mathematically apply the precise local Manila time offset, and write down the exact computed numbers. 
+- **Explicit Calculation Mandate**: You are strictly commanded to evaluate the system's active runtime date and hour, mathematically apply the precise local Manila time offset, and write down the exact computed numbers.
 - **Required Format**: `Month Day, Year, HH:MM AM/PM PST` (e.g., `June 17, 2026, 10:03 AM PST`).
 - **Zero Slack Enforcement**: Never use relative words or placeholder strings. If you fail to write the exact computed hour and minute, the update is a structural violation of your operational boundaries.
 

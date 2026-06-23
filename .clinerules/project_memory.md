@@ -43,15 +43,23 @@ _Document the foundational rules, workflows, or operational flows unique to this
 
 ## 4. Current State & Active Focus
 
-- **Active Task**:
+### Active Tasks
+
+- Log from here in LIFO format
 
 ---
 
-- **Completed Milestones**:
+### Completed Milestones
+
+- Log from here in LIFO format
 
 ---
 
-- **Pending Tasks**:
+### Pending Tasks
+
+- Log from here in LIFO format
+
+---
 
 ## 5. Architectural Decisions & Constraints
 
@@ -60,13 +68,25 @@ _Document the foundational rules, workflows, or operational flows unique to this
 ---
 
 ## 6. DOCUMENTED IMPLEMENTATION PLANS & FEATURE FLOWS
+
 You are strictly commanded to use this section to log full architectural design maps, planned execution outlines, or documented system feature flows when requested. Every time a user plans a general task, complex logic, or big structural feature, you MUST log the implementation roadmap here so you never get stuck or lost. You must format the entry using strict bracket identifiers identical to the error memory system:
 
 ### [FLOW-001] Title of Implemented Flow
+
 - **Context/Objective**: [What feature or process flow does this plan describe?]
 - **Step-by-Step Logic Outline**:
   1. [Step 1 description]
   2. [Step 2 description]
 - **Dependencies Involved**: [List files, databases, or modules impacted by this flow]
+
+---
+
+## 7. SECURITY ANALYSIS, ATTACK VECTORS & REMEDIATION FLOWS
+
+### [SEC-001] Threat Title
+
+- **Vulnerability Rating**: [Score 0 - 10]
+- **Attacker Exploit Methodology**: [Explain how a black-market actor extracts value from this flaw]
+- **Production-Ready Remediation Plan**: [Step-by-step fix outline]
 
 <!-- c: worrie -->

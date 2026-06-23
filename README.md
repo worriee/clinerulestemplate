@@ -4,12 +4,20 @@ Make your AI agent smarter, faster, and highly token-efficient! It stops the AI 
 
 ---
 
-## Recent Updates: 22/06/2026
+## Quick Links
 
+[Folder Structure](#folder-structure-on-roo-template) | [Prompt Triggers](#prompt-triggers-manual-commands) | [Installation Guide](#installation-guide) | [FAQ](#faq) | [Own Usages](#own-usages-of-roo-code)
+
+---
+
+## Recent Updates:
+
+- added a new security analyst persona (-s) to exploit, evaluate, rate (0-10) vulnerabilities, and log threat flows into project memory without modifying codebase files.
+- added a system cleaning rule (-clean) to safely check and remove unrelated code or messy debugging logs with clear justifications while strictly protecting frontend/backend code.
+- enforced absolute immutable protection over all markdown section titles (# headers) and existing logs across all memory files to prevent any modification or deletion.
 - updated logging capabalities in all memory files to be more beginner friendly when explaining project structure and context using simple terms.
 - updated timestamp with strict rule to check user current system time.
 - added a LIFO rule where when logging in any memory files the newest will always be on top.
-- updated heading sections in memory files (so memories are organized and retains the past existing memories of her... wait I meant past logs of the project like error logs and documentation logs so it will be useful for studying.)
 
 ---
 
@@ -20,7 +28,7 @@ Make your AI agent smarter, faster, and highly token-efficient! It stops the AI 
 - Zoo Code [Zoo Code Organization] (community forked roo after its shutdown in vscode extension migrating to Roomote)
 - Kilo Code [kilocode.ai] (do check the exclusive guide for this in installation guide below)
 
-*(or in any ai agent you're currently working with across platforms.)*
+_(or in any ai agent you're currently working with across platforms as long as you'll able to make the ai read these files.)_
 
 ---
 
@@ -34,31 +42,33 @@ This template builds an **AI Memory Layer** inside your local project. It forces
 
 ---
 
-## Folder Structure & How It Works
+## Folder Structure (on .roo template)
 
 Here is a visual map (based on roo code rules directory) of how every file works together to manage your AI assistant:
 
-```mermaid
-graph TD
-    Root[Your-Project-Root/] --> Roo[.roo/]
-    
-    Roo --> Rules[rules/]
-    Rules --> C1[.clinerules]
-    Rules --> C2[system_instructions.md]
-    Rules --> M1[codebase_map.md]
-    Rules --> M2[error_memory.md]
-    Rules --> M3[project_memory.md]
-    
-    Roo --> P1[rules-ask/ask.md]
-    Roo --> P2[rules-code/coder.md]
-    Roo --> P3[rules-debug/debugger.md]
-    Roo --> P4[rules-orchestrator/orchestrator.md]
-    Roo --> P5[rules-plan/planner.md]
-
-    style M1 fill:#3498db,stroke:#2980b9,color:#fff
-    style M2 fill:#3498db,stroke:#2980b9,color:#fff
-    style M3 fill:#3498db,stroke:#2980b9,color:#fff
+```text
+Your-Project-Root/                 # The root directory of your active development project workspace
+└── .roo/                          # Main configuration folder containing all AI agent parameters
+    ├── rules/                     # Core system boundaries and permanent tracking layer directory
+    │   ├── .clinerules            # Global operational guidelines and behavioral ground truth rules
+    │   ├── system_instructions.md # Global system bounds, execution priorities, and prompt flag triggers
+    │   ├── codebase_map.md        # File structure registry, stack overview, and global application maps
+    │   ├── error_memory.md        # LIFO-ordered memory log tracking active and historical debugging paths
+    │   └── project_memory.md      # Master context tracker mapping stack architecture, milestones, and security flows
+    ├── rules-ask/
+    │   └── ask.md                 # Configuration layout for read-only concept analysis and code explanation mode
+    ├── rules-code/
+    │   └── coder.md               # Configuration layout for implementing production-grade features and functional logic
+    ├── rules-debug/
+    │   └── debugger.md            # Configuration layout for running root-cause analysis and forensic error tracing
+    ├── rules-orchestrator/
+    │   └── orchestrator.md        # Configuration layout for high-level workflow delegation and milestone tracking
+    ├── rules-plan/
+    │   └── planner.md             # Configuration layout for formulating technical design specifications and blueprints
+    └── rules-security/
+        └── security.md            # Configuration layout for running threat modeling, exploit assessment, and safety scoring
 ```
+
 ## Quick File Breakdown
 
 - `rules/.clinerules` & `rules/system_instructions.md`: These files act as the AI's permanent "brain constraints." They define safety zones, timezone standards, and force the AI to respect your local project boundaries.
@@ -73,19 +83,19 @@ graph TD
 
 Type these prompts depending on these situations!
 
-[Newly Added: Manual Triggers on Persona's]
-
-| Command / Flag | Type | What it does / Purpose | Use Case |
-| :--- | :--- | :--- | :--- |
-| `-o` | Persona | **Orchestrator** - Managing massive, multi-step task, and acting all personas at once | Prompting a general plan or massive implementation. |
-| `-p` | Persona | **Planner** - Plans your expected ideas | -p [discuss your plan] |
-| `-c` | Persona | **Coder** - Writing clean, production-grade logic | Use this to act on agreed proposed plan from agent. |
-| `-d` | Persona | **Debug** - Deep root-cause error analysis | -d [clearly state your error such as sending error logs] |
-| `-a` | Persona | **Ask** - Reading code and explaining concepts | If you want to ask or clarify something. |
-| `-setup` | Memory | Dynamically inspects your whole workspace and updates all three memory layers at once. | Use this on your very first prompt or whenever you start a brand new chat session! |
-| `-context` | Memory | Scans your current project structure and updates project_memory.md to record your active project workflow. | Use when you update the context so the agent is aware of the current state. You can also use this when migrating to other ai agents that's compatible with this template. |
-| `-error` | Memory | Analyzes active debugging traces and updates error_memory.md with current bugs, logs, and resolution steps. Records history of fixed errors to prevent hallucinating. | Every debugging session include -error in your prompt so it records resolved and current errors. |
-| `-codebase` | Memory | Looks over your code layout and updates codebase_map.md with simple descriptions of your active application workflow. Records techstack and explains purpose of every file. | Best practices to use this prompt is when you're about to deploy or finished building your project. |
+| Command / Flag | Type    | What it does / Purpose                                                                                                                                                      | Use Case                                                                                                                                                                  |
+| :------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-o`           | Persona | **Orchestrator** - Managing massive, multi-step task, and acting all personas at once                                                                                       | Prompting a general plan or massive implementation.                                                                                                                       |
+| `-p`           | Persona | **Planner** - Plans your expected ideas                                                                                                                                     | -p [discuss your plan]                                                                                                                                                    |
+| `-c`           | Persona | **Coder** - Writing clean, production-grade logic                                                                                                                           | Use this to act on agreed proposed plan from agent.                                                                                                                       |
+| `-d`           | Persona | **Debug** - Deep root-cause error analysis                                                                                                                                  | -d [clearly state your error such as sending error logs]                                                                                                                  |
+| `-a`           | Persona | **Ask** - Reading code and explaining concepts                                                                                                                              | If you want to ask or clarify something.                                                                                                                                  |
+| `-s`           | Persona | **Secutiry** - Aggressive threat modeling, exploit evaluations, and code safety rating (0-10)                                                                               | Use to check for data leaks, credential risks, or black-market vulnerabilities without modifying core code.                                                               |
+| `-clean`       | Utility | **Clean Workspace** - Automated analysis and removal of unrelated junk files or redundant debugging traces                                                                  | Use to safely clean up diagnostic trash or non-functional file clutter while keeping active frontend/backend layers untouched.                                            |
+| `-setup`       | Memory  | Dynamically inspects your whole workspace and updates all three memory layers at once.                                                                                      | Use this on your very first prompt or whenever you start a brand new chat session!                                                                                        |
+| `-context`     | Memory  | Scans your current project structure and updates project_memory.md to record your active project workflow.                                                                  | Use when you update the context so the agent is aware of the current state. You can also use this when migrating to other ai agents that's compatible with this template. |
+| `-error`       | Memory  | Analyzes active debugging traces and updates error_memory.md with current bugs, logs, and resolution steps. Records history of fixed errors to prevent hallucinating.       | Every debugging session include -error in your prompt so it records resolved and current errors.                                                                          |
+| `-codebase`    | Memory  | Looks over your code layout and updates codebase_map.md with simple descriptions of your active application workflow. Records techstack and explains purpose of every file. | Best practices to use this prompt is when you're about to deploy or finished building your project.                                                                       |
 
 ---
 
@@ -136,7 +146,8 @@ You: -setup
 
 ## FAQ
 
-**Q: What happens if I forget to type a memory flag manually?** <br>The AI will still write code normally, but it won't update its internal progress tracking logs. If your chat session expires or resets, the AI won't know where you left off. Just type the correct flag (`-context`, `-error`, etc.) on your next prompt to sync it up.
+**Q: What happens if I forget to type a memory flag manually?**
+<br>The AI will still write code normally, but it won't update its internal progress tracking logs. If your chat session expires or resets, the AI won't know where you left off. Just type the correct flag (`-context`, `-error`, etc.) on your next prompt to sync it up.
 
 **Q: Why can't the AI just update the memory files on its own every time?**
 <br>Because reading and rewriting the whole memory layout on every single message uses a massive amount of tokens, which costs you more money. It also slows down the AI and makes it prone to messing up active code instructions when it gets confused during bug fixes.
@@ -167,7 +178,7 @@ You: -setup
 
 ---
 
-## Own Usages
+## Own Usages of Roo Code
 
 <p align="center">
     <img src="assets/usage1.png" width="200"/>
