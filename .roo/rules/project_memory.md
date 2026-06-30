@@ -58,6 +58,16 @@ All specialized memory logs are stored in `.roo/memory/` directory:
 - **Review Memory**: `.roo/memory/review_memory.md` — Code review findings, quality assessments
 - **Test Memory**: `.roo/memory/test_memory.md` — Test strategies, coverage analysis, test case documentation
 
+**Archive Files** (pre-created, receive overflow from memory files):
+
+- **Error Archive**: `.roo/archives/error_archive.md`
+- **Implementation Archive**: `.roo/archives/implementation_archive.md`
+- **Security Archive**: `.roo/archives/security_archive.md`
+- **Review Archive**: `.roo/archives/review_archive.md`
+- **Test Archive**: `.roo/archives/test_archive.md`
+
+_Note: `codebase_map.md` and `project_memory.md` are excluded from archival._
+
 ---
 
 ## 7. ARCHIVE STATUS

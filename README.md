@@ -1,6 +1,6 @@
-# Workspace Rules & Skills Template
+# Ultimate Vibe Experience (UVE Coding Strat) - A Workspace Template
 
-Make your AI agent smarter, faster, and highly token-efficient! It stops the AI from guessing your code structure or forgetting past progress. Saves time when moving to other AI agents without re-explaining everything so that it understands current context.
+Make your AI agent smarter, faster, and highly token-efficient! It stops the AI from guessing your code structure or forgetting past progress. Saves time when moving to other AI agents without re-explaining everything.
 
 ---
 
@@ -12,21 +12,24 @@ Make your AI agent smarter, faster, and highly token-efficient! It stops the AI 
 
 ## Recent Updates:
 
+- Added prompt trigger `-archive` for archiving memory logs.
 - Restructured memory system: separated specialized logs into dedicated `.roottemplate/memory/` folder with individual files for errors, security, reviews, tests, implementation flows, and codebase mapping.
 - Added **Reviewer persona** (`-r`) for structured code quality reviews with severity-classified findings and architectural compliance checks.
 - Added **Tester persona** (`-t`) for test strategy design, test case generation, and coverage gap analysis.
-- Implemented **Memory Archive Protocol**: when any tracked section exceeds 10 entries, oldest logs are automatically archived to `.roottemplate/archives/` to prevent context bloat while preserving history.
+- Implemented **Memory Archive Protocol**: when any tracked section exceeds 10 entries, oldest logs are archived to pre-created archive files in `.roottemplate/archives/` to prevent context bloat while preserving history.
 - Added **Workspace Initialization Protocol** with `workspace.json` that identifies which project is using the template and prevents re-initialization conflicts.
 - Optimized all four templates (Cline, Roo, Kilo, OpenCode) to use consistent folder structures and path references within their respective root directories.
+- Added **pre-created archive files** (`error_archive.md`, `implementation_archive.md`, `security_archive.md`, `review_archive.md`, `test_archive.md`) for organized, predictable archival without AI generating messy filenames.
+- Excluded `codebase_map.md` and `project_memory.md` from archival to preserve permanent project structure and task history.
 
 ---
 
 ## You can use this template for:
 
-- Cline [cline.bot] (use .clinerules folder)
-- Roo Code [roocode.com] (use .roo folder)
-- Zoo Code [Zoo Code Organization] (use .roo folder here since it's a community forked roo after its shutdown in vscode extension migrating to Roomote)
-- Kilo Code [kilocode.ai] (use .kilo folder)
+- Cline Extension [cline.bot] (use .clinerules folder)
+- Roo Code Extension [roocode.com] (use .roo folder)
+- Zoo Code Extension [Zoo Code Organization] (use .roo folder here since it's a community forked roo after its shutdown in vscode extension migrating to Roomote)
+- Kilo Code Extension or CLI [kilocode.ai] (use .kilo folder)
 - OpenCode CLI (use .opencode folder)
 
 _(or in any ai agent you're currently working with across platforms as long as you'll able to make the ai read these files.)_
@@ -61,6 +64,12 @@ Your-Project-Root/
     │   ├── security_memory.md      # Vulnerability tracking, threat modeling, and remediation plans.
     │   ├── review_memory.md        # Code review findings, quality assessments, and severity classifications.
     │   └── test_memory.md          # Test strategies, coverage analysis, and test case documentation.
+    ├── archives/                   # Pre-created archive files for overflow from memory sections exceeding 10 entries.
+    │   ├── error_archive.md        # Receives archived entries from error_memory.md
+    │   ├── implementation_archive.md # Receives archived entries from implementation_memory.md
+    │   ├── security_archive.md     # Receives archived entries from security_memory.md
+    │   ├── review_archive.md       # Receives archived entries from review_memory.md
+    │   └── test_archive.md         # Receives archived entries from test_memory.md
     ├── skills/                     # Modular, on-demand task capabilities loaded dynamically via intent or flags.
     │   ├── ask/
     │   │   └── SKILL.md            # Read-only persona for architecture reviews and conceptual walkthroughs.
@@ -78,7 +87,6 @@ Your-Project-Root/
     │   │   └── SKILL.md            # Safety exploit evaluator mapping attack surfaces and vulnerability scores.
     │   └── tester/
     │       └── SKILL.md            # Test architect for strategy design, case generation, and coverage analysis.
-    ├── archives/                   # Historical memory snapshots when sections exceed 10 entries.
     ├── workspace.json              # Workspace identity marker tracking project name and initialization state.
     ├── AGENTS.md                   # Skill execution mode registry and memory file location references.
     └── opencode.json               # OpenCode configuration pointing to instruction files.
@@ -92,21 +100,23 @@ _All four templates (.clinerules, .roo, .kilo, .opencode) share the same interna
 
 Type these prompts depending on these situations!
 
-| Command / Flag | Type    | What it does / Purpose                                                                                                                                                         | Use Case                                                                                                                       |
-| :------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| `-o`           | Persona | **Orchestrator** - Managing massive, multi-step tasks and coordinating all personas simultaneously                                                                             | Prompting a general plan or massive implementation.                                                                            |
-| `-p`           | Persona | **Planner** - Creates structured technical roadmaps and waits for approval before code changes                                                                                 | `-p [discuss your plan]`                                                                                                       |
-| `-c`           | Persona | **Coder** - Writes clean, production-grade logic following codebase patterns                                                                                                   | Use this to act on agreed proposed plan from agent.                                                                            |
-| `-d`           | Persona | **Debugger** - Deep root-cause error analysis and systematic tracing                                                                                                           | `-d [clearly state your error such as sending error logs]`                                                                     |
-| `-a`           | Persona | **Ask** - Read-only code analysis and concept explanations                                                                                                                     | If you want to ask or clarify something without code modifications.                                                            |
-| `-s`           | Persona | **Security Analyst** - Aggressive threat modeling, exploit evaluations, and code safety rating (0-10)                                                                          | Use to check for data leaks, credential risks, or black-market vulnerabilities without modifying core code.                    |
-| `-r`           | Persona | **Reviewer** - Structured code quality reviews with severity classifications (CRITICAL/HIGH/MEDIUM/LOW) and architectural compliance checks                                    | Use after code implementation to validate quality, identify performance bottlenecks, or enforce best practices before merging. |
-| `-t`           | Persona | **Tester** - Test strategy design, test case generation, and coverage gap analysis                                                                                             | Use before feature completion to plan unit/integration/E2E tests or analyze existing test coverage.                            |
-| `-clean`       | Utility | **Clean Workspace** - Automated analysis and removal of unrelated junk files or redundant debugging traces                                                                     | Use to safely clean up diagnostic trash or non-functional file clutter while keeping active frontend/backend layers untouched. |
-| `-setup`       | Utility | Dynamically inspects your whole workspace and updates all memory layers at once.                                                                                               | Use this on your very first prompt or whenever you start a brand new chat session!                                             |
-| `-context`     | Memory  | Scans your current project structure and updates `project_memory.md` to record your active project workflow.                                                                   | Use when you update the context so the agent is aware of the current state. Also useful when migrating to other AI agents.     |
-| `-error`       | Memory  | Analyzes active debugging traces and updates `error_memory.md` with current bugs, logs, and resolution steps. Records history of fixed errors to prevent hallucination.        | Every debugging session include `-error` in your prompt so it records resolved and current errors.                             |
-| `-codebase`    | Memory  | Looks over your code layout and updates `codebase_map.md` with simple descriptions of your active application workflow. Records tech stack and explains purpose of every file. | Best practices: use this prompt when you're about to deploy or finished building your project.                                 |
+| Command / Flag | Type           | What it does / Purpose                                                                                                                                                         | Use Case                                                                                                                                                |
+| :------------- | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-setup`       | Utility        | Dynamically inspects your whole workspace and updates all memory layers at once.                                                                                               | Runs -context, -error, -codebase, and -init triggers all at the same time. Use this on your very first prompt or whenever you start a new chat session! |
+| `-o`           | Persona        | **Orchestrator** - Managing massive, multi-step tasks and coordinating all personas simultaneously                                                                             | Prompting a general plan or massive implementation.                                                                                                     |
+| `-p`           | Persona        | **Planner** - Creates structured technical roadmaps and waits for approval before code changes                                                                                 | `-p [discuss your plan]`                                                                                                                                |
+| `-c`           | Persona        | **Coder** - Writes clean, production-grade logic following codebase patterns                                                                                                   | Use this to act on agreed proposed plan from agent.                                                                                                     |
+| `-d`           | Persona        | **Debugger** - Deep root-cause error analysis and systematic tracing                                                                                                           | `-d [clearly state your error such as sending error logs]`                                                                                              |
+| `-a`           | Persona        | **Ask** - Read-only code analysis and concept explanations                                                                                                                     | If you want to ask or clarify something without code modifications.                                                                                     |
+| `-s`           | Persona/Memory | **Security Analyst** - Aggressive threat modeling, exploit evaluations, and code safety rating (0-10)                                                                          | Use to check for data leaks, credential risks, or black-market vulnerabilities without modifying core code.                                             |
+| `-r`           | Persona/Memory | **Reviewer** - Structured code quality reviews with severity classifications (CRITICAL/HIGH/MEDIUM/LOW) and architectural compliance checks                                    | Use after code implementation to validate quality, identify performance bottlenecks, or enforce best practices before merging.                          |
+| `-t`           | Persona/Memory | **Tester** - Test strategy design, test case generation, and coverage gap analysis                                                                                             | Use before feature completion to plan unit/integration/E2E tests or analyze existing test coverage.                                                     |
+| `-clean`       | Utility        | **Clean Workspace** - Automated analysis and removal of unrelated junk files or redundant debugging traces                                                                     | Use to safely clean up diagnostic trash or non-functional file clutter while keeping active frontend/backend layers untouched.                          |
+| `-context`     | Memory         | Scans your current project structure and updates `project_memory.md` to record your active project workflow.                                                                   | Use when you update the context so the agent is aware of the current state. Also useful when migrating to other AI agents.                              |
+| `-error`       | Memory         | Analyzes active debugging traces and updates `error_memory.md` with current bugs, logs, and resolution steps. Records history of fixed errors to prevent hallucination.        | Every debugging session include `-error` in your prompt so it records resolved and current errors.                                                      |
+| `-codebase`    | Memory         | Looks over your code layout and updates `codebase_map.md` with simple descriptions of your active application workflow. Records tech stack and explains purpose of every file. | Best practices: use this prompt when you're about to deploy or finished building your project.                                                          |
+| `-init`        | Utility        | **Initialize Workspace** - Reads `workspace.json`, prompts for project name, and writes initialized values with timestamp                                                      | Use on first-time setup when applying this template to a new project.                                                                                   |
+| `-archive`     | Utility        | **Archive Memory** - Scans eligible memory files and archives oldest entries when sections exceed 10 entries to pre-created archive files                                      | Use when memory files get too large and you want to clean up active sections while preserving history.                                                  |
 
 ---
 

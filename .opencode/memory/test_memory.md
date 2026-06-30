@@ -46,13 +46,13 @@
 
 ## 4. ARCHIVE STATUS
 
-- **Archive Location**: `.opencode/archives/`
+- **Archive File**: `.opencode/archives/test_archive.md`
 - **Threshold**: 10 active entries per section
-- **Archives Created**: 0
+- **Total Archived**: 0
 - **Last Archive Check**: `Not yet performed`
 
-| Archive File        | Entries Archived | Archived At (PST) |
-| ------------------- | ---------------- | ----------------- |
-| _(No archives yet)_ |                  |                   |
+| Entries Archived | Archived At (PST) |
+| ---------------- | ----------------- |
+| 0                | —                 |
 
 <!-- c: worrie -->

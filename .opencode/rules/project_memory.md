@@ -58,6 +58,16 @@ All specialized memory logs are stored in `.opencode/memory/` directory:
 - **Review Memory**: `.opencode/memory/review_memory.md` — Code review findings, quality assessments
 - **Test Memory**: `.opencode/memory/test_memory.md` — Test strategies, coverage analysis, test case documentation
 
+**Archive Files** (pre-created, receive overflow from memory files):
+
+- **Error Archive**: `.opencode/archives/error_archive.md`
+- **Implementation Archive**: `.opencode/archives/implementation_archive.md`
+- **Security Archive**: `.opencode/archives/security_archive.md`
+- **Review Archive**: `.opencode/archives/review_archive.md`
+- **Test Archive**: `.opencode/archives/test_archive.md`
+
+_Note: `codebase_map.md` and `project_memory.md` are excluded from archival._
+
 ---
 
 ## 7. ARCHIVE STATUS

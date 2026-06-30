@@ -2,18 +2,20 @@
 
 ## System Boundaries
 - Scope Restriction: All file reads, indexing, and tool usage MUST remain strictly confined to the project root workspace directory. Do not access global directories, home directories, or parent folders. This prevents excessive context pollution and keeps context usage lean.
-- Token Efficiency: Do not re-read large unedited files repetitively. Rely on the structured metadata in `.roo/rules/project_memory.md` and `.roo/memory/` directory to persist state.
+- Token Efficiency: Do not re-read large unedited files repetitively. Rely on the structured metadata in `.roo/rules/project_memory.md`, `.roo/memory/` and `.roo/archives/` directory to persist state.
 
 ## Manual Sync Entry Rule (Flag-Triggered Verification)
 - On-Demand Memory Synchronization: Background auto-updates are disabled. Make sure you update the timestamps after everytime these commands are prompted from the user. You MUST only scan, re-analyze, or update the local tracking layers when explicitly commanded by the user via the following command flags:
+  - `-init`: Triggers workspace initialization by reading `.roo/workspace.json`, prompting the user for a project name, and writing the initialized values. Use this on first-time setup or when re-initializing a new project.
   - `-context`: Triggers a full analysis and updates `.roo/rules/project_memory.md` to map out active project context and milestones.
   - `-error`: Triggers an active diagnostic scan and updates `.roo/memory/error_memory.md` with current bugs, stack traces, or resolution history.
   - `-codebase`: Triggers a complete structure inspection and updates `.roo/memory/codebase_map.md` with descriptions of the files and current project workflow.
   - `-setup`: Triggers a combined sequential execution of all the above updates across all memory files simultaneously.
+  - `-archive`: Triggers a scan of all eligible memory files and archives oldest entries when sections exceed 10 entries. Archives to pre-created archive files in `.roo/archives/`.
 - Strict Adherence: For regular prompts without these flags, assume the existing information in the memory files is unchanged and use it as your ground truth.
 
 ## CRITICAL: Enforced Context Loss Read Execution
-- Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, a session reset, or if the user appends any command flag (`-context`, `-error`, `-codebase`, `-setup`, `-clean`, `-o`, `-p`, `-c`, `-d`, `-a`, `-s`, `-r`, `-t`), you are strictly commanded to instantly halt execution and re-read this main file (`.roo/rules/.clinerules`) followed by your memory layers (`.roo/rules/project_memory.md`, `.roo/memory/error_memory.md`, `.roo/memory/codebase_map.md`).
+- Enforced Context Re-Reads: If you notice a loss of context window memory, a token expiration event, a session reset, or if the user appends any command flag (`-init`, `-context`, `-error`, `-codebase`, `-setup`, `-archive`, `-clean`, `-o`, `-p`, `-c`, `-d`, `-a`, `-s`, `-r`, `-t`), you are strictly commanded to instantly halt execution and re-read this main file (`.roo/.clinerules`) followed by your memory layers (`.roo/rules/project_memory.md`, `.roo/memory/error_memory.md`, `.roo/memory/codebase_map.md`).
 - Re-Enforce Ground Truth: Use these local guides to instantly rebuild your mental map of the codebase without asking the user to re-explain past progress.
 
 ## Persona Execution Mode Selection
@@ -75,35 +77,40 @@ When processing user instructions, dynamically match your operational mindset to
 
 ## MEMORY ARCHIVAL PROTOCOL
 
-- **Archive Location**: `.roo/archives/` directory stores historical memory snapshots.
-- **Entry Count Threshold**: When any tracked section in the memory files exceeds **10 active entries**, the AI MUST execute archival:
+- **Archive Location**: `.roo/archives/` directory stores historical memory snapshots using pre-defined archive files.
+- **Archive-Eligible Files**: Only the following memory files are subject to archival:
+  - `error_memory.md` → archives to `error_archive.md`
+  - `implementation_memory.md` → archives to `implementation_archive.md`
+  - `security_memory.md` → archives to `security_archive.md`
+  - `review_memory.md` → archives to `review_archive.md`
+  - `test_memory.md` → archives to `test_archive.md`
+- **Excluded From Archiving**: `codebase_map.md` and `project_memory.md` are permanently excluded from archival. Their entries remain indefinitely.
+- **Entry Count Threshold**: When any tracked section in an eligible memory file exceeds **10 active entries**, the AI MUST execute archival:
 1. Count entries in the section (entries separated by `###` headers)
 2. If count exceeds 10:
    - Extract the oldest entries (entries at the bottom of the section, since LIFO ordering places newest at top)
-   - Create an archive file named: `{memory_file_name}_{YYYY-MM-DD_HH-MM}.md`
-   - Move the oldest entries to the archive file under a matching section header
+   - Append the oldest entries to the corresponding pre-created archive file under a matching section header
    - Retain only the 10 most recent entries in the active section
-- **Archive File Format**: Archive files MUST follow this structure:
+3. Never create new archive files — always append to the existing pre-defined archive files.
+- **Archive File Format**: Archive files follow this structure:
 ```markdown
-# Archived Memory Snapshot
+# {Memory Type} Archive
 
 - **Source File**: `{original_memory_file_name}`
-- **Archived At**: `{Month Day, Year, HH:MM AM/PM PST}`
-- **Entry Count**: `{number of entries archived}`
+- **Last Archived At**: `{Month Day, Year, HH:MM AM/PM PST}`
+- **Total Entries Archived**: `{cumulative count}`
 
 ---
 
 ## Archived Entries
 
-{Moved entries here with original formatting preserved}
+{Appended entries here with original formatting preserved}
 - Archive Sections Affected:
 - error_memory.md Section 1: Active & Unresolved Errors
 - implementation_memory.md Section 1: Documented Implementation Plans & Feature Flows
 - security_memory.md Section 1: Active & Unresolved Vulnerabilities
 - review_memory.md Section 1: Active & Open Review Findings
 - test_memory.md Section 1: Active Test Strategies
-- project_memory.md Section 4.1: Active Tasks
-- project_memory.md Section 4.3: Pending Tasks
-- Archival Trigger: Archival is ONLY triggered when the user explicitly prompts -context, -error, -codebase, or -setup flags, AND the section count exceeds 10. The AI must NEVER auto-archive in the background.
+- Archival Trigger: Archival is ONLY triggered when the user explicitly prompts the `-archive` flag, AND the section count exceeds 10. The AI must NEVER auto-archive in the background.
 
 <!-- c: worrie -->

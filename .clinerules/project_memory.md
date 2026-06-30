@@ -58,6 +58,16 @@ All specialized memory logs are stored in `.clinerules/memory/` directory:
 - **Review Memory**: `.clinerules/memory/review_memory.md` — Code review findings, quality assessments
 - **Test Memory**: `.clinerules/memory/test_memory.md` — Test strategies, coverage analysis, test case documentation
 
+**Archive Files** (pre-created, receive overflow from memory files):
+
+- **Error Archive**: `.clinerules/archives/error_archive.md`
+- **Implementation Archive**: `.clinerules/archives/implementation_archive.md`
+- **Security Archive**: `.clinerules/archives/security_archive.md`
+- **Review Archive**: `.clinerules/archives/review_archive.md`
+- **Test Archive**: `.clinerules/archives/test_archive.md`
+
+_Note: `codebase_map.md` and `project_memory.md` are excluded from archival._
+
 ---
 
 ## 7. ARCHIVE STATUS

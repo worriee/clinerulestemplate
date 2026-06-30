@@ -3,7 +3,7 @@
 ## 1. Context Window Optimization & Token Management
 
 - Strict Project Localism: You are strictly banned from reading or searching files outside the project root directory. Do not scan systemic, global, or unrelated historical directories. This prevents context bloating and ensures complete isolation.
-- **Absolute Rule Folder Isolation**: You are strictly forbidden from creating any new folders or files inside the `.clinerules/` directory. You must only utilize, read, and write to the existing memory files (`project_memory.md`) in this directory and the memory files inside `.clinerules/memory/` directory.
+- **Absolute Rule Folder Isolation**: You are strictly forbidden from creating any new folders or files inside the `.clinerules/` directory. You must only utilize, read, and write to the existing memory files (`project_memory.md`) in this directory and the memory files inside `.clinerules/memory/` and `.clinerules/archives/` directory.
 - Selective File Reading: Only open and read files that are directly related to the current task or explicitly mentioned in code paths. Avoid bulk directory reads or parsing deep asset folders unless required.
 - Context Preservation: Avoid conversational filler or echoing long blocks of existing code. Keep answers dense, practical, and highly contextualized to save context window room.
 
@@ -20,12 +20,14 @@
 
 ## 3. Manual Memory Sync & Trigger Rules
 
-- **Prohibited Background Mutating**: Do not alter, overwrite, or touch `.clinerules/project_memory.md` or any files inside `.clinerules/memory/` during feature development or bug patches unless the user explicitly included the specific trigger flags (`-context`, `-error`, `-codebase`, `-setup`).
+- **Prohibited Background Mutating**: Do not alter, overwrite, or touch `.clinerules/project_memory.md` or any files inside `.clinerules/memory/` during feature development or bug patches unless the user explicitly included the specific trigger flags (`-context`, `-error`, `-codebase`, `-setup`, `-archive`).
 - **Command Flag Processing Execution**:
+  - If `-init` is prompted: Read `.clinerules/workspace.json`. If `workspace_id` equals `"uninitialized"`, prompt the user: `"Enter project name for workspace initialization:"`. Set `workspace_id` to a lowercase-hyphenated slug of the project name, set `project_name` to the user-provided name, set `initialized_at` to the current Philippine Standard Time (PST), and set `initialized_by` to `"ai-assistant"`. Write the updated values back to `.clinerules/workspace.json`. If `workspace_id` is already set to a non-`"uninitialized"` value, inform the user that workspace is already initialized and skip re-initialization unless `-reinit` flag is present.
   - If `-context` is prompted: Run structural inspection and update `.clinerules/project_memory.md` together with its timestamp.
   - If `-error` is prompted: Analyze debugging traces and update `.clinerules/memory/error_memory.md` together with its timestamp.
   - If `-codebase` is prompted: Log directory maps and file utilities inside `.clinerules/memory/codebase_map.md` together with its timestamp. **Strict Exclusion Constraint**: You are strictly forbidden from documenting, explaining, or listing any files or folders ignored by the project's `.gitignore` file within the codebase map tracker.
-  - If `-setup` is prompted: You are strictly and ultimately commanded to sequentially execute all tracking commands (`-context`, `-codebase`, and `-error`) in a single pass. You must thoroughly synchronize all state documentation files simultaneously and accurately update every single one of their timestamp blocks to the exact current Philippine Standard Time (PST).
+  - If `-setup` is prompted: You are strictly and ultimately commanded to sequentially execute all tracking commands (`-init`, `-context`, `-codebase`, and `-error`) in a single pass. You must thoroughly synchronize all state documentation files simultaneously and accurately update every single one of their timestamp blocks to the exact current Philippine Standard Time (PST).
+  - If `-archive` is prompted: Scan all 5 eligible memory files (`error_memory.md`, `implementation_memory.md`, `security_memory.md`, `review_memory.md`, `test_memory.md`) and check if any section exceeds 10 entries. For each qualifying section: extract the oldest entries (bottom entries in LIFO order), append them to the corresponding pre-created archive file (`error_archive.md`, `implementation_archive.md`, `security_archive.md`, `review_archive.md`, or `test_archive.md`), update the archive file's `Last Archived At` timestamp and `Total Entries Archived` count, and retain only the 10 most recent entries in the active section. Never create new archive files — always append to existing pre-defined archive files. Log archival action in output: `[ARCHIVAL] Moved {count} entries from {section} to {archive_file}`.
 - **Ultimate Historical Error Preservation & Retention Formatting**: When processing the `-error` or `-setup` flags to update `.clinerules/memory/error_memory.md`, you are under strict professional command to NEVER alter, wipe, truncate, or delete any data located inside 'Section 2: Historical & Resolved Errors'. Past resolved bugs are critical progress milestones and immutable project history. You must only append new resolutions to that section.
   - **Active Error Format**: When logging a new blocker inside Section 1, you MUST strictly use the following sequential bracketed format: `### [ERR-XXX] Short Description Title`.
   - **Resolved Error Format**: When migrating an active issue from Section 1 to Section 2, you MUST retain its specific tracking number, extract it from the original title, and append it cleanly to the end of the new resolution header using standard parenthesis formatting (e.g., `### [RESOLVED] Short Error Description (ERR-XXX)`).
@@ -49,12 +51,12 @@
 - **Vulnerability Logging Protocol**: When running under `-s`, you must safely open `.clinerules/memory/security_memory.md` and log attack patterns strictly within `## 1. Active & Unresolved Vulnerabilities` using a clear LIFO ordering format.
 - **Clean Command Constraint**: The moment `-clean` is triggered, isolate your actions to removing non-functional logic, forgotten log lines, or trace logs. Keep all real application structures untouched to ensure complete reliability.
 - **Workspace Initialization Mandate**: When processing any command flag, first check `.clinerules/workspace.json`. If `workspace_id` equals `"uninitialized"`, prioritize initialization before executing the requested task. Log the initialization event in the command output.
-- **Archival Execution Protocol**: When processing `-context`, `-error`, `-codebase`, or `-setup` flags, before writing new entries to memory files, check if any section exceeds 10 entries. If threshold is exceeded:
+- **Archival Execution Protocol**: When the user explicitly prompts the `-archive` flag, scan all eligible memory files and archive oldest entries when sections exceed 10 entries. Eligible files are: `.clinerules/memory/error_memory.md`, `.clinerules/memory/implementation_memory.md`, `.clinerules/memory/security_memory.md`, `.clinerules/memory/review_memory.md`, and `.clinerules/memory/test_memory.md`. **Excluded from archival**: `.clinerules/memory/codebase_map.md` and `.clinerules/project_memory.md`. If threshold is exceeded:
   1. Calculate oldest entries (bottom entries in LIFO order)
-  2. Generate archive filename with current PST timestamp
-  3. Create archive file in `.clinerules/archives/` with preserved formatting
-  4. Remove archived entries from active section
-  5. Retain only 10 most recent entries
+  2. Append the oldest entries to the corresponding **pre-created archive file** (`error_archive.md`, `implementation_archive.md`, `security_archive.md`, `review_archive.md`, or `test_archive.md`)
+  3. Update the archive file's `Last Archived At` timestamp and `Total Entries Archived` count
+  4. Retain only 10 most recent entries in the active section
+  5. Never create new archive files — always append to existing pre-defined archive files
   6. Log archival action in output: `[ARCHIVAL] Moved {count} entries from {section} to {archive_file}`
 
 ## 4. Rule Immutability & Modification Restrictions

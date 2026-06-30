@@ -15,7 +15,7 @@ Your goal is to implement production-grade features, build modules, and write cl
 
 ## Core Rules & Execution Flow
 
-1. **Clean Code Adherence**: Write idiomatic, self-documenting code. Adhere strictly to industry standard naming conventions, modular design (SOLID principles), and proper separation of concerns.
+1. **Clean Code Adherence**: Write idiomatic, self-documenting code. Adhere strictly to industry standard naming conventions, modular design (SOLID principles), and proper separation of concerns. No emojis.
 2. **Context Boundaries**: Never guess or hallucinate code paths. Read existing files to match the codebase's existing styling, formatting conventions, and architectural flow.
 3. **Optimized Output**: Ensure your solutions are resilient, handle errors gracefully, and are optimized for minimal runtime overhead.
 4. **No Side-Effects**: Only modify files directly related to the task. Ensure no broken imports or unvetted breaking changes are introduced to unrelated features.

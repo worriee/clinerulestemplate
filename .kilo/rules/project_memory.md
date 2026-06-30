@@ -58,6 +58,16 @@ All specialized memory logs are stored in `.kilo/memory/` directory:
 - **Review Memory**: `.kilo/memory/review_memory.md` — Code review findings, quality assessments
 - **Test Memory**: `.kilo/memory/test_memory.md` — Test strategies, coverage analysis, test case documentation
 
+**Archive Files** (pre-created, receive overflow from memory files):
+
+- **Error Archive**: `.kilo/archives/error_archive.md`
+- **Implementation Archive**: `.kilo/archives/implementation_archive.md`
+- **Security Archive**: `.kilo/archives/security_archive.md`
+- **Review Archive**: `.kilo/archives/review_archive.md`
+- **Test Archive**: `.kilo/archives/test_archive.md`
+
+_Note: `codebase_map.md` and `project_memory.md` are excluded from archival._
+
 ---
 
 ## 7. ARCHIVE STATUS
